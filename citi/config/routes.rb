@@ -6,5 +6,6 @@ Citi::Application.routes.draw do
   end
 
   root 'welcome#index'
+  get 'searches' => 'searches#index'
   resource :session, only: [:destroy, :create, :new]
 end
