@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 jake = User.create(username: "jake", email: "jake@gmail.com", password_digest: "pass")
-trip = Trip.create(address: "10 east 21st street, NY, NY", is_favorite: true, user_id: 1)
+favorite = Favorite.create(address: "10 east 21st street, NY, NY", user_id: 2)
