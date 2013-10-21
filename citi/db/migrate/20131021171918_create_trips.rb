@@ -1,7 +1,7 @@
 class CreateTrips < ActiveRecord::Migration
 def up
     create_table :trips do |t|
-    t.string :address, :string, :null => false
+    t.string :address, :null => false
     t.boolean :is_favorite
     t.datetime "created_at"
     t.datetime "updated_at"

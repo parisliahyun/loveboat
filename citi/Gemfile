@@ -32,14 +32,22 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# citibikenyc
+
 # gecoder
 #  push
+gem "multi_json", "~> 1.7.7"
 
 gem 'pry-rails', group: [:development, :test]
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+# citibikenyc gem
+gem "citibikenyc", "~> 0.0.1"
+
+gem "geocoder", "~> 1.1.8"
+
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

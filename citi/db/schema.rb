@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20131021172333) do
 
   create_table "trips", force: true do |t|
     t.string   "address",     null: false
-    t.string   "string",      null: false
     t.boolean  "is_favorite"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,7 +26,6 @@ ActiveRecord::Schema.define(version: 20131021172333) do
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false
-    t.string   "string",          null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.datetime "created_at"
