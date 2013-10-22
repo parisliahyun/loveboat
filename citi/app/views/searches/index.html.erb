@@ -1,8 +1,14 @@
-<h1>Find docks near your destination:</h1>
 <div class="container">
-  <div class="form">
-  <form action="/searches" method="get">
-    <p><input type="textarea" name="destination[address]" placeholder="address" /></p>
-      <button id="button">Go!</button>
-  </form>
+
+  <h1>Find docks near your destination:</h1>  
+  
+   <div class="form">
+    <%= form_tag searches_path, :method => :get do %>   
+        <%= text_field_tag :address, params[:address] %>  
+        <%= submit_tag "Go", :name => nil %>  
+    <% end %>  
+  </div> 
 </div>
+
+<h3><%= "#{@coordinates}#{@x}#{@y}" %></h3>
+
