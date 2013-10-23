@@ -1,0 +1,15 @@
+<!-- 1. clicking on Save Favorites goes to the wrong page
+        2. Favorites buttons on User*Show don't function the way they should. Should go to a new search result when clicked. 
+ -->
+
+
+<!-- <ul>
+   <% @favorites.each do |favorite| %>
+      <%= form_tag searches_path(current_user), :method => :get do %>
+      <%= hidden_field_tag :address, params[:address] %>
+      <%= submit_tag "#{favorite.address}", :name => :address  %>
+      <% end %>
+    <% end %>
+</ul>
+
+  <li><%= link_to favorite.address, searches_path(current_user), :method => do %></li> -->

@@ -58,7 +58,6 @@ private
 
 # this checks for authentication, if not logged in, kick them back to log in page.
 
-
   def set_user
     @user = User.find(params[:id])
   end
@@ -71,6 +70,16 @@ private
 end
 end
 
+
+# <!--    <div class="nav">   
+#       <h3>
+#           <%= link_to "Back", user_path %> |
+#           <%= link_to "Edit", edit_user_path(@user) %> |
+#         need the :method below b/c http requests typically send GET, but here we need DELETE so we're specifying.
+#           <%= link_to "Destroy", user_path(@user), :method => :delete %>
+#         </h3>
+#     </div> -->
+# </div>
 
 
 

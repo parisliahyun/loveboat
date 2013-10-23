@@ -5,21 +5,38 @@ class FavoritesController < ApplicationController
     render :index
   end
 
-  def show
-    @favorite = Favorite.find(params[:id])
-    render :show
-  end
 
-  def purchase
-    @favorite = Favorite.find(params[:id])
-
-    # put the below in the session helper
-    # User.find_by(id: session[:user_id])
-    if current_user.purchase(@song)
+   def create
+    @favorite = Favorite.new(favorites_params)
+    current_user.favorites << @favorite
+    if @favorite.save
       redirect_to user_path(current_user)
+      # redirect_to user_favorites_path(current_user)
+
     else
-      render :show 
+      redirect_to user_path(current_user)
     end
   end
 
+  private
+
+# this is the white list engineering
+  def favorites_params
+    params.require(:favorite).permit(:address)
+  end
+
+  def favorite?
+    favorites[user_id].present? == false
+  end
+
+
 end  
+
+
+
+# <ul>
+#   <li><h3><%= link_to "Go to Favorites", user_favorites_path(current_user) %></h3></li>
+# </ul>
+
+
+
