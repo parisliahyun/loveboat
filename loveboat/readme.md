@@ -22,7 +22,7 @@
 ##UNDERSCORE
 * need to practice using these methods
 
-<!-- CONCLUSIONS -->
+#Conclusions for my reviewing the material:
 
 ##MIDDLE EARTH
 * GetElementsByTagName is useful when appending an element to an element in the middle of a list, i.e. Rivendell which has an index of 1 in the list of Lands.
@@ -79,6 +79,8 @@ func = _.bind(func, {message: "is a beautiful color"}, 'Green');
 function () { [native code] }
 func();
 "Green is a beautiful color"
+
+##See loveboat. Something I made to practice the above. 
 
 
 
