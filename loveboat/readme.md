@@ -2,7 +2,7 @@
 
 ##The love boat exercise was a way to get practice on some of the concepts below. 
 
-#MIDDLE EARTH:
+##MIDDLE EARTH
 * var shire = document.getElementsByTagName('article')[0];
 * calling functions at the end of the function
 * Using text.Content:
@@ -14,19 +14,17 @@
   - alert(buddy.textContent + " has joined the party");
 - }
 
-#'CHEESY' LECTURE
+##'CHEESY' LECTURE
 
-
-#ATM
+##ATM
 * var amount = parseInt(this.amount.value);
-- 
 
-#UNDERSCORE
+##UNDERSCORE
 * need to practice using these methods
 
 <!-- CONCLUSIONS -->
 
-#MIDDLE EARTH
+##MIDDLE EARTH
 * GetElementsByTagName is useful when appending an element to an element in the middle of a list, i.e. Rivendell which has an index of 1 in the list of Lands.
 * text.Content is used to set the text within a node.
 * syntax for calling a function (seen a lot in the LOTR lab): after the closing curly brace call the function with functionName(); or with an argument(s): functionName(argument)();
@@ -39,15 +37,15 @@
 * alert syntax: alert(what you want the alert to say); i.e.:
 - alert(buddy.textContent + " has joined the party");
 
-#Cheesy
+##Cheesy
 * Got it. 
 
-#ATM
+##ATM
 *  amount is defined here: this.amount = document.getElementById(this.name + "_amount");
 * fuzzy on how self = this works. Why do we need that? 
 * unsure when we need window.onload and when we don't. Why didn't we need it for Middle Earth? 
 
-#Underscore
+##Underscore
 *Some methods I played with in the console:
 
 _.filter
