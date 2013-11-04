@@ -1,11 +1,12 @@
 <div class="container"></div>
-  <h1>Favorites</h1>
-
-  <% @favorites.each do |favorite| %>
-  <ul>
-     <li><%=  "#{favorite.address}" %></li>
-  <% end %>
-  </ul>
+  <h2>Saved Destinations</h2>
+  <div class="well">
+    <% @favorites.each do |favorite| %>
+    <ul>
+       <li><%=  "#{favorite.address}" %></li>
+    <% end %>
+    </ul>
+ </div> 
 </div>
 
 

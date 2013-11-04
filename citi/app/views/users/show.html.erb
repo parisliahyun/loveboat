@@ -1,25 +1,18 @@
-<div class="container">
 
-  <h1><%= "Welcome, #{@user.username}!" %></h1>
-
-    <div class="container">
-     <div class="form">
-        <%= form_tag searches_path, :method => :get do %>   
-            <%= text_field_tag :address, params[:address], placeholder: 'street city and zip...'%>  
-            <%= submit_tag "Go", :name => nil %>  
-        <% end %>  
-      </div> 
-    </div>
-
-
+<h2>Your Saved Destinations:</h2>
   <ul>
-    <li>your favorites:</li>
     <% @user.favorites.each do |favorite| %>
-      <%= form_tag searches_path(current_user), :method => :get do %>
-      <%= submit_tag "#{favorite.address}", :name => :address  %>
+    <%= form_tag searches_path, :method => :post do %>
+    <li><%= submit_tag "#{favorite.address}", :class => 'saved_destination', :name => :address %></li>
     <% end %>
     <% end %>
   </ul>
 
+
+<div class="new_search">
+  <h6><%= link_to "New Search", new_search_path %> </h6>
 </div>
+
+
+
 

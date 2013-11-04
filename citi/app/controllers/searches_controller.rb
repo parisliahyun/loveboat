@@ -1,79 +1,53 @@
 class SearchesController < ApplicationController
 
-#  double check the logic - don't think it's returning shortest distance. DONE
-# if available_docks == 0, exclude station from results. IN PROGRESS
-# if winning_dock's available_docks == 0 within .1 miles of user's position, send notification to reroute with address to available dock. 
+  # TODO change search index to redirect to a refresh of the results page.
+  # TODO add bootstrap
+  # TODO add text messaging
+  
+  def new
+    render :new
+  end
 
-  def index
-    @address = Favorite.new(address: params[:address])
+  def create
+
     @coordinates = Geocoder.coordinates(params[:address])
-
     unless @coordinates.nil?
 
-      @coordinates = { "latitude" => @coordinates[0], "longitude" => @coordinates[1] }
-      @citibike_docks = Citibikenyc.stations.values[2]
+      @coordinates = { latitude: @coordinates[0], longitude: @coordinates[1] }
+      @all_citibike_stations = Citibikenyc.stations.values[2]
 
-        # @distances = @citibike_docks.map do |dock|       
-        #   unless dock["availableDocks"] == 0
-        #       @distance_x = @coordinates["longitude"] - dock["longitude"]
-        #       @distance_y = @coordinates["latitude"] - dock["latitude"]
-        #       @distance_to_one_dock = Math.hypot( @distance_x, @distance_y )
-        #   end
-        # end
+      available_stations_for_docks = @all_citibike_stations.reject { |d| d["availableDocks"] == 0 }
 
-        @distances = {}
+      available_stations_for_bikes = @all_citibike_stations.reject { |d| d["availableBikes"] == 0 } 
 
-        @citibike_docks. each do |dock|
-          unless dock["availableDocks"] == 0
-              @distance_x = @coordinates["longitude"] - dock["longitude"]
-              @distance_y = @coordinates["latitude"] - dock["latitude"]
-              @distances[dock["label"]] = Math.hypot( @distance_x, @distance_y )
-          end
+      @winning_dock_station = available_stations_for_docks.min_by do |station|
+        distance_x = @coordinates[:longitude] - station["longitude"]
+        distance_y = @coordinates[:latitude] - station["latitude"]
+        Math.hypot( distance_x, distance_y )
+      end 
+
+      @winning_bike_station = available_stations_for_bikes.min_by do |station|
+        distance_x = @coordinates[:longitude] - station["longitude"]
+        distance_y = @coordinates[:latitude] - station["latitude"]
+        Math.hypot( distance_x, distance_y )
         end 
 
-      # define hash where key == station name & value == it's distance
+########## next closest station logic ##############
 
-# associate the label with the distance that we generated. 
+      if @winning_bike_station["label"] == @winning_dock_station["label"]
+        id = @winning_bike_station["nearbyStations"][0]["id"] 
+        @next_best_station = @all_citibike_stations.select do |station| station["id"] == id
+      end
+    end
 
-      # delete key value pairs that have distance == nil
-      # @distances.delete_if { |station, distance| distance == nil }
-
-      # sort by distances in ascending order
-      @sorted_distances = @distances.sort_by { |station, distance| distance }
-      # retrieve array for shorted distance with
-      # first element == station name
-      # second element == it's distance
-      @closest_station = @sorted_distances.first #=> [station_name, distance]
-
-      # @final = @distances.min
-      # @closest_station[1] #distances
-
-      # @i = @distances.index(@final)
-
-      # @winning_dock = @citibike_docks[@i]["label"]  
-      @winning_dock = @closest_station[0] #call me
-
-      # @citibike_docks[1]["availableDocks"] == 37
-
-      closest = @citibike_docks.select { |dock| dock["label"] == @closest_station[0] }
-
-      @winning_dock_available_docks = closest.first["availableDocks"] #call me
-        
-      render :index
+     render :results
     else
-      render erb: "<%= debug Geocoder.coordinates(params[:address]) %>"
-    # redirect to searches#results when search is successful. 
+     render erb: "<%= debug Geocoder.coordinates(params[:address]) %>"  
     end
   end
 
-private
-
- def favorite?
-    favorites[user_id].present? == false
+  def index
+    redirect_to new_search_path
   end
 
-end
-
-
-    # <li><h3><%="#{@winning_dock} has #{@citibike_docks[@i]["availableDocks"] } docks available. Huzzah!!" %></h3></li>
-
+end 

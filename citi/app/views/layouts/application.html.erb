@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Citi</title>
-    <link rel="stylesheet" href="/style.css">
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>Awesome Citi</title>
+  <script>$('.dropdown-toggle').dropdown();</script>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>$(".collapse").collapse();</script>
 </head>
 <body>
-<!-- logout -->
-  <nav>
-    <% if logged_in? %>
-      <ul>
-        <li></li>
-        <li><%= link_to 'Logout', session_path, :method => :delete %></li>
-      </ul>
-    <% end %>
-  </nav>
-
-<%= yield %>
-
+   <!-- <h1>AWESOMECITI.NYC</h1>-->
+   <%= render 'layouts/header'%>
+<div class="container">
+  <%= yield %>
+</div>
+<footer>
+</footer>
+</div>
 </body>
 </html>
 
+      
 
 
 
