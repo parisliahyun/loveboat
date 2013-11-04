@@ -1,4 +1,6 @@
-#STUFF I DIDN'T QUITE GRASP FROM LAST WEEK
+#THE STUFF I NEEDED TO REVIEW FROM LAST WEEK
+
+##The love boat exercise was a way to get practice on some of the concepts below. 
 
 #MIDDLE EARTH:
 * var shire = document.getElementsByTagName('article')[0];
@@ -12,7 +14,7 @@
   - alert(buddy.textContent + " has joined the party");
 - }
 
-#EVERYTHING FROM CHEESY
+#'CHEESY' LECTURE
 
 
 #ATM
