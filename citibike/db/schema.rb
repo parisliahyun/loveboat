@@ -11,9 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20131130191729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exchanges", force: true do |t|
+    t.boolean  "is_bike"
+    t.date     "date"
+    t.time     "time"
+    t.decimal  "price",        default: 5.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requester_id"
+    t.integer  "vendor_id"
+    t.string   "station"
+  end
+
+  create_table "favorites", force: true do |t|
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "username",        null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
