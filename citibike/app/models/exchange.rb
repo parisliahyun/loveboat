@@ -1,5 +1,5 @@
 class Exchange < ActiveRecord::Base
-  validates :station, :requester_id, :is_bike, :date, :time, :price, presence: true
+  validates :station, :date, :time, :price, presence: true
   belongs_to :requester,
     :class_name => 'User',
     :primary_key => 'user_id',
@@ -8,8 +8,6 @@ class Exchange < ActiveRecord::Base
     :class_name => 'User',
     :primary_key => 'user_id',
     :foreign_key => 'vendor_id'   
-
-
 
   def transform_date
     d = Date.parse(self.date.to_s)

@@ -1,11 +1,29 @@
 <div class="well">
+  <h4></h4>
   <ul>
-    <li>ID: <%= @exchange.id %></li>
+    <li>Id: <%= @exchange.id %></li>
     <li>Requester: <%= @exchange.requester_id %></li>
+    <li>Vendor: <%= @exchange.vendor_id %></li>
     <li>Station: <%= @exchange.station %></li>
     <li>Date: <%= @exchange.transform_date %></li>
     <li>Time: <%= @exchange.time %></li>
     <li>Price: <%= @exchange.price %></li>
     <li>Is_bike: <%= @exchange.is_bike %></li>
+    <% if @exchange.is_bike == true %>
+    <li>Need a Bike</li>
+    <% else %>
+    <li>Need a Dock</li>
+    <% end %>
+    
+    <!-- if @exchange.requester_id == nil %> -->
+    <%= button_to "confirm", confirm_exchange_path(set_requester(@exchange, @exchange.id)), :id => @exchange.id, :method => :put %>
+
+    <!-- end %> -->
+     <!-- binding.pry  -->
+
+    <% if @exchange.requester_id != current_user.id && @exchange.requester_id != nil %>
+    <%= button_to "claim", claim_exchange_path(set_vendor(@exchange, @exchange.id)), :id => @exchange.id, :method => :put %>
+     <% end %>
+
   </ul>
 </div>
