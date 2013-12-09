@@ -2,7 +2,6 @@ class ExchangesController < ApplicationController
 
   def new
     @exchange = Exchange.new
-    # binding.pry
     render :new
   end
 
@@ -44,6 +43,7 @@ class ExchangesController < ApplicationController
 
   def show
     @exchange = Exchange.find(params[:id])
+    # @exchange.requester_id = current_user.id
     render :show
   end
 
@@ -54,15 +54,28 @@ class ExchangesController < ApplicationController
   end
 
   def confirm
-    # @exchange = Exchange.find(params[:id])
-     
-    # @exchange.update_attributes(params[:requester_id]) 
-    # binding.pry
+    @exchange = Exchange.find(params[:id])
+    @exchange.requester_id = current_user.id
+    @exchange.save!
     redirect_to user_path(current_user)
   end
 
   def claim
+    @exchange = Exchange.find(params[:id])
+    @exchange.vendor_id = current_user.id
+    current_user.role = "vendor"
+    current_user.save!
+    @exchange.save!
     redirect_to user_path(current_user)
+  end
+
+  def destroy
+   @exchange = Exchange.find(params[:id])
+    if @exchange.destroy
+      redirect_to user_path(current_user)
+    else 
+      render :new
+    end
   end
     
   private
